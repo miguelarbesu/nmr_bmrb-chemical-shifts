@@ -1,5 +1,17 @@
 ATOMS = ['C', 'H', 'N']
 
+rule all:
+    input:
+        expand('html/{atoms}_bmrb_cs_stats_filtered.html',
+        atoms=ATOMS)
+
+rule clean:
+    input:
+        expand('html/{atoms}_bmrb_cs_stats_filtered.html',
+        atoms=ATOMS)
+    shell:
+        'rm -r {input}'
+
 rule fetch:
     input: 
     output: 
@@ -26,7 +38,13 @@ rule split:
             atomdf = df[df['atom_id'].str.startswith(atom)]
             atomdf.to_csv(path_or_buf=out_file)
 
-rule all:
+rule chart:
     input:
         expand('data/processed/{atoms}_bmrb_cs_stats_filtered.csv',
         atoms=ATOMS)
+    output:
+        expand('html/{atoms}_bmrb_cs_stats_filtered.html',
+        atoms=ATOMS)
+    script:
+        'src/bokehcharts.py'
+
