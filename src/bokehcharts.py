@@ -12,6 +12,12 @@ ppm_ranges = {
               'N': [220, -20],
               }
 
+massnumbers = {
+              'C': '13',
+              'H': '1',
+              'N': '15',
+              }
+
 
 def makechart(infile, outfile, chart_size=(900, 900)):
 
@@ -20,6 +26,12 @@ def makechart(infile, outfile, chart_size=(900, 900)):
     atomtype = unique_atoms[0].split()[0]
     ppm_range = ppm_ranges[atomtype]
     aminoacids = sorted(df.comp_id.unique(), reverse=True)
+
+    title = '{massnumber}{atom} chemical shift mean \
+± one standard deviation'.format(
+                                 massnumber=massnumbers[atomtype],
+                                 atom=atomtype
+                                 )
 
     fcmap = factor_cmap('atom_id',
                         palette=viridis(len(unique_atoms)),
@@ -35,7 +47,7 @@ def makechart(infile, outfile, chart_size=(900, 900)):
         ('min', '@min'),
     ]
 
-    p = figure(title='Chemical Shift average ± one standard deviation',
+    p = figure(title=title,
                y_range=aminoacids,
                x_range=ppm_range,
                tools=tools,
@@ -53,9 +65,8 @@ def makechart(infile, outfile, chart_size=(900, 900)):
     p.legend.location = "center_right"
 
     output_file(outfile)
-    save(p)
+    save(p, title=title)
 
 
 for csv, html in zip(snakemake.input, snakemake.output):
     makechart(csv, html)
-

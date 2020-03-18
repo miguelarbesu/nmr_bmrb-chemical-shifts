@@ -1,7 +1,0 @@
-name: nmr_bmrb-chemical-shifts
-channels:
-  - conda-forge
-dependencies:
-  - pandas
-  - bokeh
-  - voila
