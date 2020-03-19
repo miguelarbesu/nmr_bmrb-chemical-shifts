@@ -26,3 +26,8 @@ Hover over each bar to see the corresponding data:
     - Maximum
 
 <sup>1</sup> Only chemical shifts from standard amino acids in diamagnetic samples.
+
+---
+
+*This site uses Google Analytics to monitor activity. 
+You can check the privacy policy [here](https://policies.google.com/privacy?hl=en-US)*
