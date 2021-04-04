@@ -63,13 +63,10 @@ def makechart(infile, outfile, chart_size=(900, 900)):
            alpha=0.75, source=df, line_color='black', line_width=2.5)
 
     p.legend.location = "center_right"
-    # Not supported yet for multi-line plots
-    # p.legend.click_policy="hide"
 
     output_file(outfile)
     save(p, title=title)
 
-if __name__=="__main__":
 
-    for csv, html in zip(snakemake.input, snakemake.output):
-        makechart(csv, html)
+for csv, html in zip(snakemake.input, snakemake.output):
+    makechart(csv, html)
