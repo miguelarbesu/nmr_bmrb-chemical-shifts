@@ -30,4 +30,4 @@ Hover over each bar to see the corresponding data:
 ---
 
 *This site uses Google Analytics to monitor activity. 
-You can check the privacy policy [here](https://policies.google.com/privacy?hl=en-US)*
+You can check the privacy policy [here](https://policies.google.com/privacy?hl=en-US).*
