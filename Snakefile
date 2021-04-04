@@ -20,7 +20,7 @@ rule fetch:
         'wget http://www.bmrb.wisc.edu/ftp/pub/bmrb/statistics/chem_shifts/aa_filt.csv -O {output}'
 
 
-rule split:
+rule process:
     input: 
         'data/raw/bmrb_cs_stats_filtered.csv'
     output: 
@@ -30,6 +30,9 @@ rule split:
         import pandas as pd 
 
         df = pd.read_csv(filepath_or_buffer=input[0])
+        # Rename Methyl Hs (MX#) as H's
+        df["atom_id"] = df["atom_id"].str.replace('M', 'H')
+        # Calculate 
         df['avg-std'] = df['avg'] - df['std']
         df['avg+std'] = df['avg'] + df['std']
             

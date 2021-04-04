@@ -67,6 +67,7 @@ def makechart(infile, outfile, chart_size=(900, 900)):
     output_file(outfile)
     save(p, title=title)
 
+if __name__=="__main__":
 
-for csv, html in zip(snakemake.input, snakemake.output):
-    makechart(csv, html)
+    for csv, html in zip(snakemake.input, snakemake.output):
+        makechart(csv, html)
